@@ -4,6 +4,13 @@
     <script src="{{url_for('static', filename='js/sample.js')}}"></script>
 </head>
 <body>
-    lalala
+    <form action="/game" method="post" class="game_creation_form">
+    <div class="container">
+        <label for="seconds"><b>Turn takes</b></label>
+        <input id="seconds" type="text" placeholder="Seconds" name="seconds" required>
+
+        <button type="submit">Create</button>
+    </div>
+</form>
 </body>
 </html>

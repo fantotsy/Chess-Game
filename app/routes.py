@@ -1,8 +1,11 @@
 from flask import render_template, redirect, request
+from app.dto.user import User
 from app import app
 
-USERNAME = "username"
-PASSWORD = "password"
+USERNAME: str = "username"
+PASSWORD: str = "password"
+
+users = [User('user1', 'password1'), User('user2', 'password2'), User('user3', 'password3')]
 
 
 @app.route('/', methods=['GET'])
@@ -13,10 +16,16 @@ def index():
 
 @app.route('/login', methods=['POST'])
 def login():
-    username = request.form[USERNAME]
-    password = request.form[PASSWORD]
+    username: str = request.form[USERNAME]
+    password: str = request.form[PASSWORD]
 
-    if username == password:
+    is_existing_user: bool = False
+    for user in users:
+        if user.username == username and user.password == password:
+            is_existing_user = True
+            break
+
+    if is_existing_user:
         return redirect('/profile')
     else:
         return render_template('index.html', login_warning='Wrong credentials!')
@@ -24,15 +33,27 @@ def login():
 
 @app.route('/signup', methods=['POST'])
 def signup():
-    username = request.form[USERNAME]
-    password = request.form[PASSWORD]
+    username: str = request.form[USERNAME]
+    password: str = request.form[PASSWORD]
 
-    if username == password:
-        return redirect('/profile')
-    else:
+    is_existing_user: bool = False
+    for user in users:
+        if user.username == username and user.password == password:
+            is_existing_user = True
+            break
+
+    if is_existing_user:
         return render_template('index.html', signup_warning='Such username exists!')
+    else:
+        users.append(User(username, password))
+        return redirect('/profile')
 
 
 @app.route('/profile', methods=['GET'])
 def profile():
     return render_template('profile.html')
+
+
+@app.route('/game', methods=['POST'])
+def game():
+    return render_template('chessboard.html')
