@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+</head>
+<body>
+<form action="/login" method="post" class="login_form">
+    <div class="container">
+        {{ login_warning }}
+        <label for="login_username"><b>Username</b></label>
+        <input id="login_username" type="text" placeholder="Enter Username" name="username" required>
+
+        <label for="login_password"><b>Password</b></label>
+        <input id="login_password" type="password" placeholder="Enter Password" name="password" required>
+
+        <button type="submit">Login</button>
+    </div>
+</form>
+<form action="/signup" method="post" class="signup_form">
+    <div class="container">
+        {{ signup_warning }}
+        <label for="signup_username"><b>Username</b></label>
+        <input id="signup_username" type="text" placeholder="Enter Username" name="username" required>
+
+        <label for="signup_password"><b>Password</b></label>
+        <input id="signup_password" type="password" placeholder="Enter Password" name="password" required>
+
+        <button type="submit">Sign Up</button>
+    </div>
+</form>
+</body>
+</html>
