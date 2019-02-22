@@ -11,14 +11,17 @@ class Piece(object):
         self.color = color
 
     def __repr__(self):
-        return self.image[0 if self.color == Color.BLACK else 1]
+        if self.color == Color.WHITE:
+            return self.image[0]
+        else:
+            return self.image[1]
 
 
 class Empty(object):
     color = Color.EMPTY
 
     def __repr__(self):
-        return '.'
+        return ''
 
 
 class Pawn(Piece):

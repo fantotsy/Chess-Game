@@ -1,83 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Chessboard using Pure CSS and HTML</title>
+    <title>Chessboard</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='chessboard.css') }}">
 </head>
 <body>
 <div class="chessboard">
-    <!-- 1st -->
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <!-- 2nd -->
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <!-- 3th -->
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <!-- 4st -->
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <!-- 5th -->
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <!-- 6th -->
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <!-- 7th -->
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <!-- 8th -->
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="white"></div>
+
+    <div class="white a8">{{ board[0][0] }}</div>
+    <div class="black b8">{{ board[0][1] }}</div>
+    <div class="white c8">{{ board[0][2] }}</div>
+    <div class="black d8">{{ board[0][3] }}</div>
+    <div class="white e8">{{ board[0][4] }}</div>
+    <div class="black f8">{{ board[0][5] }}</div>
+    <div class="white g8">{{ board[0][6] }}</div>
+    <div class="black h8">{{ board[0][7] }}</div>
+
+    <div class="black a7">{{ board[1][0] }}</div>
+    <div class="white b7">{{ board[1][1] }}</div>
+    <div class="black c7">{{ board[1][2] }}</div>
+    <div class="white d7">{{ board[1][3] }}</div>
+    <div class="black e7">{{ board[1][4] }}</div>
+    <div class="white f7">{{ board[1][5] }}</div>
+    <div class="black g7">{{ board[1][6] }}</div>
+    <div class="white h7">{{ board[1][7] }}</div>
+
+    <div class="white a6">{{ board[2][0] }}</div>
+    <div class="black b6">{{ board[2][1] }}</div>
+    <div class="white c6">{{ board[2][2] }}</div>
+    <div class="black d6">{{ board[2][3] }}</div>
+    <div class="white e6">{{ board[2][4] }}</div>
+    <div class="black f6">{{ board[2][5] }}</div>
+    <div class="white g6">{{ board[2][6] }}</div>
+    <div class="black h6">{{ board[2][7] }}</div>
+
+    <div class="black a5">{{ board[3][0] }}</div>
+    <div class="white b5">{{ board[3][1] }}</div>
+    <div class="black c5">{{ board[3][2] }}</div>
+    <div class="white d5">{{ board[3][3] }}</div>
+    <div class="black e5">{{ board[3][4] }}</div>
+    <div class="white f5">{{ board[3][5] }}</div>
+    <div class="black g5">{{ board[3][6] }}</div>
+    <div class="white h5">{{ board[3][7] }}</div>
+
+    <div class="white a4">{{ board[4][0] }}</div>
+    <div class="black b4">{{ board[4][1] }}</div>
+    <div class="white c4">{{ board[4][2] }}</div>
+    <div class="black d4">{{ board[4][3] }}</div>
+    <div class="white e4">{{ board[4][4] }}</div>
+    <div class="black f4">{{ board[4][5] }}</div>
+    <div class="white g4">{{ board[4][6] }}</div>
+    <div class="black h4">{{ board[4][7] }}</div>
+
+    <div class="black a3">{{ board[5][0] }}</div>
+    <div class="white b3">{{ board[5][1] }}</div>
+    <div class="black c3">{{ board[5][2] }}</div>
+    <div class="white d3">{{ board[5][3] }}</div>
+    <div class="black e3">{{ board[5][4] }}</div>
+    <div class="white f3">{{ board[5][5] }}</div>
+    <div class="black g3">{{ board[5][6] }}</div>
+    <div class="white h3">{{ board[5][7] }}</div>
+
+    <div class="white a2">{{ board[6][0] }}</div>
+    <div class="black b2">{{ board[6][1] }}</div>
+    <div class="white c2">{{ board[6][2] }}</div>
+    <div class="black d2">{{ board[6][3] }}</div>
+    <div class="white e2">{{ board[6][4] }}</div>
+    <div class="black f2">{{ board[6][5] }}</div>
+    <div class="white g2">{{ board[6][6] }}</div>
+    <div class="black h2">{{ board[6][7] }}</div>
+
+    <div class="black a1">{{ board[7][0] }}</div>
+    <div class="white b1">{{ board[7][1] }}</div>
+    <div class="black c1">{{ board[7][2] }}</div>
+    <div class="white d1">{{ board[7][3] }}</div>
+    <div class="black e1">{{ board[7][4] }}</div>
+    <div class="white f1">{{ board[7][5] }}</div>
+    <div class="black g1">{{ board[7][6] }}</div>
+    <div class="white h1">{{ board[7][7] }}</div>
 </div>
 </body>
 </html>
