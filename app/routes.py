@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, request, jsonify
 
 from app import app
 from app.chessboard import Chessboard
@@ -15,3 +15,10 @@ def home():
 @app.route('/game', methods=['GET'])
 def game():
     return render_template('chessboard.html', board=chessboard.board)
+
+
+@app.route('/targets', methods=['POST'])
+def targets():
+    piece_position = request.form['position']
+    target_positions = chessboard.get_targets(piece_position)
+    return jsonify(targets=target_positions)

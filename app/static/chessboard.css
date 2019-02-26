@@ -4,23 +4,26 @@
     margin: 20px;
     border: 25px solid #333;
 }
-.black {
+
+.square {
     float: left;
     width: 80px;
     height: 80px;
-    background-color: #999;
     font-size: 50px;
     text-align: center;
     display: table-cell;
     vertical-align: middle;
 }
+
+.black {
+    background-color: #999;
+}
+
 .white {
-    float: left;
-    width: 80px;
-    height: 80px;
     background-color: #fff;
-    font-size: 50px;
-    text-align: center;
-    display: table-cell;
-    vertical-align: middle;
+}
+
+.target {
+    outline-offset: -10px;
+    outline: 5px solid #ff0000;
 }
