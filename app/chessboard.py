@@ -56,3 +56,14 @@ class Chessboard(object):
                         break
 
         return result
+
+    def perform_movement(self, position, target):
+        x_position = self.x_position_to_index[position[0]]  # x position is from left to right
+        y_position = int(position[1]) - 1  # y position is from down to up
+        x_target = self.x_position_to_index[target[0]]  # x position is from left to right
+        y_target = int(target[1]) - 1  # y position is from down to up
+
+        self.board[x_target][y_target] = self.board[x_position][y_position]
+        self.board[x_position][y_position] = Empty()
+
+        return

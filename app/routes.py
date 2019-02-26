@@ -19,6 +19,14 @@ def game():
 
 @app.route('/targets', methods=['POST'])
 def targets():
-    piece_position = request.form['position']
-    target_positions = chessboard.get_targets(piece_position)
+    current_position = request.form['position']
+    target_positions = chessboard.get_targets(current_position)
     return jsonify(targets=target_positions)
+
+
+@app.route('/movement', methods=['POST'])
+def movement():
+    current_position = request.form['position']
+    target_position = request.form['target']
+    chessboard.perform_movement(current_position, target_position)
+    return jsonify(success=True)
