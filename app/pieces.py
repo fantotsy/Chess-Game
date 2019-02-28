@@ -1,7 +1,7 @@
 class Color(object):
+    BLACK = -1
     EMPTY = 0
     WHITE = 1
-    BLACK = 2
 
 
 class Piece(object):
@@ -9,7 +9,6 @@ class Piece(object):
 
     def __init__(self, color):
         self.color = color
-        # self.is_long_running = False
 
     def __repr__(self):
         if self.color == Color.WHITE:
@@ -40,7 +39,6 @@ class Pawn(Piece):
 
 class Rook(Piece):
     image = ('♖', '♜')
-    # is_long_running = True
 
     def get_moves(self):
         return [
@@ -68,7 +66,6 @@ class Knight(Piece):
 
 class Bishop(Piece):
     image = ('♗', '♝')
-    # is_long_running = True
 
     def get_moves(self):
         return [
@@ -89,7 +86,6 @@ class Bishop(Piece):
 
 class Queen(Piece):
     image = ('♕', '♛')
-    # is_long_running = True
 
     def get_moves(self):
         return [

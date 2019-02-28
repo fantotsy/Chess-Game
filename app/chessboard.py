@@ -25,6 +25,7 @@ class Chessboard(object):
     }
 
     def __init__(self):
+        self.current_player_color = Color.WHITE
         self.board = [
             [Rook(Color.WHITE), Pawn(Color.WHITE), Empty(), Empty(), Empty(), Empty(), Pawn(Color.BLACK), Rook(Color.BLACK)],
             [Knight(Color.WHITE), Pawn(Color.WHITE), Empty(), Empty(), Empty(), Empty(), Pawn(Color.BLACK), Knight(Color.BLACK)],
@@ -35,6 +36,14 @@ class Chessboard(object):
             [Knight(Color.WHITE), Pawn(Color.WHITE), Empty(), Empty(), Empty(), Empty(), Pawn(Color.BLACK), Knight(Color.BLACK)],
             [Rook(Color.WHITE), Pawn(Color.WHITE), Empty(), Empty(), Empty(), Empty(), Pawn(Color.BLACK), Rook(Color.BLACK)]
         ]
+
+    def is_piece_allowed(self, position):
+        x_position = self.x_position_to_index[position[0]]  # x position is from left to right
+        y_position = int(position[1]) - 1
+
+        piece = self.board[x_position][y_position]
+
+        return piece.color == self.current_player_color
 
     def get_targets(self, position):
         x_position = self.x_position_to_index[position[0]]  # x position is from left to right
@@ -65,5 +74,6 @@ class Chessboard(object):
 
         self.board[x_target][y_target] = self.board[x_position][y_position]
         self.board[x_position][y_position] = Empty()
+        self.current_player_color *= (-1)
 
         return

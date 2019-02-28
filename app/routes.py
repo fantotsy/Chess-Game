@@ -1,4 +1,4 @@
-from flask import render_template, request, jsonify
+from flask import render_template, request, jsonify, abort
 
 from app import app
 from app.chessboard import Chessboard
@@ -20,8 +20,11 @@ def game():
 @app.route('/targets', methods=['POST'])
 def targets():
     current_position = request.form['position']
-    target_positions = chessboard.get_targets(current_position)
-    return jsonify(targets=target_positions)
+    if chessboard.is_piece_allowed(current_position):
+        target_positions = chessboard.get_targets(current_position)
+        return jsonify(targets=target_positions)
+    else:
+        return jsonify('Piece is forbidden for current player'), 400
 
 
 @app.route('/movement', methods=['POST'])

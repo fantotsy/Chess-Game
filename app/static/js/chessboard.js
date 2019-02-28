@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    isWhiteTurn = true
+
     $('.square').click(function(e) {
         if($(this).hasClass('target')) {
             position = $('.position')[0]
@@ -23,7 +25,11 @@ $(document).ready(function() {
                         $('.' + data.targets[i]).addClass('target')
                     }
                 }
-            )
+            ).fail(function(error) {
+                $('.message')[0].innerHTML = error.responseJSON
+                $('.message').fadeIn();
+                $('.message').fadeOut(3000);
+            });
         }
     });
 });
