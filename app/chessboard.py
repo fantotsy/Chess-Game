@@ -26,14 +26,17 @@ class Chessboard(object):
         piece = self.board[current_position.x][current_position.y]
         return piece.color == self.current_player_color
 
-    def get_targets(self, position):
+    def get_targets_of_unparsed_position(self, position):
         current_position = self.parse_position(position)
-        piece = self.board[current_position.x][current_position.y]
-        targets = piece.get_targets(current_position, self.board)
+        return self.get_targets_of_parsed_position(current_position)
+
+    def get_targets_of_parsed_position(self, position: Position):
+        piece = self.board[position.x][position.y]
+        targets = piece.get_targets(position, self.board)
 
         result = []
         for target in targets:
-            if not self.is_self_check_possible(current_position, target):
+            if not self.is_self_check_possible(position, target):
                 result.append(string.ascii_lowercase[target.x] + str(target.y + 1))
         return result
 
@@ -50,7 +53,7 @@ class Chessboard(object):
         self.board[current_position.x][current_position.y] = Empty()
         self.current_player_color *= (-1)
 
-        return self.is_check_for_player(self.current_player_color)
+        return self.is_check_for_current_player()
 
     def parse_position(self, position):
         x_position = string.ascii_lowercase.index(position[0])  # x position is from left to right
@@ -68,20 +71,32 @@ class Chessboard(object):
         self.board[target.x][target.y] = self.board[position.x][position.y]
         self.board[position.x][position.y] = Empty()
 
-        result = self.is_check_for_player(self.current_player_color)
+        result = self.is_check_for_current_player()
 
         self.board[position.x][position.y] = self.board[target.x][target.y]
         self.board[target.x][target.y] = target_piece
 
         return result
 
-    def is_check_for_player(self, player_color):
-        king_position = self.get_king_position(player_color)
+    def is_check_for_current_player(self):
+        king_position = self.get_king_position(self.current_player_color)
 
         for x_index, line in enumerate(self.board):
             for y_index, square in enumerate(line):
-                if square.color == player_color * (-1):
+                if square.color == self.current_player_color * (-1):
                     for target in square.get_targets(Position(x_index, y_index), self.board):
                         if king_position == target:
                             return True
         return False
+
+    def is_checkmate_for_current_player(self):
+        if not self.is_check_for_current_player():
+            return False
+        else:
+            for x_index, line in enumerate(self.board):
+                for y_index, square in enumerate(line):
+                    if square.color == self.current_player_color:
+                        targets = self.get_targets_of_parsed_position(Position(x_index, y_index))
+                        if len(targets) > 0:
+                            return False
+        return True

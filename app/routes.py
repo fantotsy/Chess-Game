@@ -1,4 +1,4 @@
-from flask import render_template, request, jsonify, abort
+from flask import render_template, request, jsonify
 
 from app import app
 from app.chessboard import Chessboard
@@ -21,7 +21,7 @@ def game():
 def targets():
     current_position = request.form['position']
     if chessboard.is_piece_allowed(current_position):
-        target_positions = chessboard.get_targets(current_position)
+        target_positions = chessboard.get_targets_of_unparsed_position(current_position)
         return jsonify(targets=target_positions)
     else:
         return jsonify('Piece is forbidden for current player'), 400
@@ -31,5 +31,10 @@ def targets():
 def movement():
     current_position = request.form['position']
     target_position = request.form['target']
-    is_check = chessboard.perform_movement(current_position, target_position)
-    return jsonify(isCheck=is_check)
+
+    is_check_for_next_player = chessboard.perform_movement(current_position, target_position)
+    if is_check_for_next_player:
+        is_checkmate_for_next_player = chessboard.is_checkmate_for_current_player()
+        return jsonify(isCheck=is_check_for_next_player, isCheckmate=is_checkmate_for_next_player)
+    else:
+        return jsonify(isCheck=is_check_for_next_player, isCheckmate=False)

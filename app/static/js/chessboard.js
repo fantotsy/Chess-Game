@@ -9,7 +9,9 @@ $(document).ready(function() {
                     'target': e.target.className.split(' ')[2]
                 },
                 function(response) {
-                    if(response.isCheck == true) {
+                    if(response.isCheckmate == true) {
+                        $('.message')[0].innerHTML = 'Checkmate!'
+                    } else if (response.isCheck == true) {
                         $('.message')[0].innerHTML = 'Check!'
                     }
                     e.target.innerHTML = position.innerHTML
