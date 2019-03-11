@@ -31,5 +31,5 @@ def targets():
 def movement():
     current_position = request.form['position']
     target_position = request.form['target']
-    chessboard.perform_movement(current_position, target_position)
-    return jsonify(success=True)
+    is_check = chessboard.perform_movement(current_position, target_position)
+    return jsonify(isCheck=is_check)

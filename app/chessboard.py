@@ -50,7 +50,7 @@ class Chessboard(object):
         self.board[current_position.x][current_position.y] = Empty()
         self.current_player_color *= (-1)
 
-        return
+        return self.is_check_for_player(self.current_player_color)
 
     def parse_position(self, position):
         x_position = string.ascii_lowercase.index(position[0])  # x position is from left to right

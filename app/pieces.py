@@ -74,11 +74,11 @@ class Pawn(Piece):
         else:
             x_target = position.x - 1
             y_target = position.y - 1
-            if 0 <= x_target <= 7 and 0 <= y_target <= 7 and board[x_target][y_target].color == Color.BLACK:
+            if 0 <= x_target <= 7 and 0 <= y_target <= 7 and board[x_target][y_target].color == Color.WHITE:
                 result.append(Position(x_target, y_target))
             x_target = position.x + 1
             y_target = position.y - 1
-            if 0 <= x_target <= 7 and 0 <= y_target <= 7 and board[x_target][y_target].color == Color.BLACK:
+            if 0 <= x_target <= 7 and 0 <= y_target <= 7 and board[x_target][y_target].color == Color.WHITE:
                 result.append(Position(x_target, y_target))
             x_target = position.x
             y_target = position.y - 1

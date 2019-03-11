@@ -8,9 +8,18 @@ $(document).ready(function() {
                     'position': position.className.split(' ')[2],
                     'target': e.target.className.split(' ')[2]
                 },
-                function() {
+                function(response) {
+                    if(response.isCheck == true) {
+                        $('.message')[0].innerHTML = 'Check!'
+                    }
                     e.target.innerHTML = position.innerHTML
                     position.innerHTML = ''
+                    isWhiteTurn = !isWhiteTurn
+                    if(isWhiteTurn == true) {
+                        $('.player')[0].innerHTML = '♔'
+                    } else {
+                        $('.player')[0].innerHTML = '♚'
+                    }
                 }
             )
             $('.square').removeClass('target')
