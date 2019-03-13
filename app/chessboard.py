@@ -2,11 +2,15 @@ import string
 
 from app.pieces import Color, Empty, Pawn, Rook, Knight, Bishop, Queen, King
 from app.position import Position
+from app.repository import Repository
+
+repository = Repository()
 
 
 class Chessboard(object):
 
     def __init__(self):
+        self.movements_history = []
         self.current_player_color = Color.WHITE
         self.captured_white_pieces = []
         self.captured_black_pieces = []
@@ -52,6 +56,7 @@ class Chessboard(object):
         self.board[target_position.x][target_position.y] = self.board[current_position.x][current_position.y]
         self.board[current_position.x][current_position.y] = Empty()
         self.current_player_color *= (-1)
+        self.movements_history.append(self.construct_movement_string(current_position, target_position))
 
         return self.is_check_for_current_player()
 
@@ -100,3 +105,11 @@ class Chessboard(object):
                         if len(targets) > 0:
                             return False
         return True
+
+    def save_game(self):
+        repository.save_game('Test Game', '#'.join(self.movements_history))
+
+    def construct_movement_string(self, current_position, target_position):
+        parsed_current_position = string.ascii_lowercase[current_position.x] + str(current_position.y + 1)
+        parsed_target_position = string.ascii_lowercase[target_position.x] + str(target_position.y + 1)
+        return ':'.join([parsed_current_position, parsed_target_position])

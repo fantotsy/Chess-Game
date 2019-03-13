@@ -1,6 +1,10 @@
 $(document).ready(function() {
     isWhiteTurn = true
 
+    $('.save').click(function(e) {
+        $.post('/save')
+    });
+
     $('.square').click(function(e) {
         if($(this).hasClass('target')) {
             position = $('.position')[0]

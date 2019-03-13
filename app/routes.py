@@ -38,3 +38,9 @@ def movement():
         return jsonify(isCheck=is_check_for_next_player, isCheckmate=is_checkmate_for_next_player)
     else:
         return jsonify(isCheck=is_check_for_next_player, isCheckmate=False)
+
+
+@app.route('/save', methods=['POST'])
+def save():
+    chessboard.save_game()
+    return jsonify(success=True)
