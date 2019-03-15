@@ -1,0 +1,29 @@
+.chessboard {
+    width: 640px;
+    height: 640px;
+    margin: 20px;
+    border: 25px solid #333;
+}
+
+.square {
+    float: left;
+    width: 80px;
+    height: 80px;
+    font-size: 50px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.black {
+    background-color: #999;
+}
+
+.white {
+    background-color: #fff;
+}
+
+.target {
+    outline-offset: -10px;
+    outline: 5px solid #ff0000;
+}

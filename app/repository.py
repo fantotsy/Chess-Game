@@ -18,3 +18,20 @@ class Repository(object):
         cursor.execute(sql, values)
         self.connection.commit()
         cursor.close()
+
+    def get_game(self, name):
+        cursor = self.connection.cursor()
+        sql = "SELECT activity FROM games WHERE name = %s"
+        value = (name,)
+        cursor.execute(sql, value)
+        game_activity = cursor.fetchone()
+        cursor.close()
+        return game_activity
+
+    def get_games(self):
+        cursor = self.connection.cursor()
+        sql = "SELECT name FROM games"
+        cursor.execute(sql)
+        games = cursor.fetchall()
+        cursor.close()
+        return games

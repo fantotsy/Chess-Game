@@ -4,6 +4,9 @@ from app.pieces import Color, Empty, Pawn, Rook, Knight, Bishop, Queen, King
 from app.position import Position
 from app.repository import Repository
 
+POSITIONS_DELIMITER = ':'
+MOVEMENTS_DELIMITER = '#'
+
 repository = Repository()
 
 
@@ -107,9 +110,20 @@ class Chessboard(object):
         return True
 
     def save_game(self):
-        repository.save_game('Test Game', '#'.join(self.movements_history))
+        repository.save_game('Test Game', MOVEMENTS_DELIMITER.join(self.movements_history))
 
     def construct_movement_string(self, current_position, target_position):
         parsed_current_position = string.ascii_lowercase[current_position.x] + str(current_position.y + 1)
         parsed_target_position = string.ascii_lowercase[target_position.x] + str(target_position.y + 1)
-        return ':'.join([parsed_current_position, parsed_target_position])
+        return POSITIONS_DELIMITER.join([parsed_current_position, parsed_target_position])
+
+    def get_games(self):
+        return repository.get_games()
+
+    def get_game_activity(self, game_name):
+        result = []
+        game_activity = repository.get_game(game_name)[0]
+        movements = game_activity.split(MOVEMENTS_DELIMITER)
+        for movement in movements:
+            result.append(movement.split(POSITIONS_DELIMITER))
+        return result

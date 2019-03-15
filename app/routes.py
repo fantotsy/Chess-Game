@@ -9,7 +9,8 @@ chessboard = Chessboard()
 @app.route('/', methods=['GET'])
 @app.route('/home', methods=['GET'])
 def home():
-    return render_template('index.html')
+    game_names = chessboard.get_games()
+    return render_template('index.html', games=game_names)
 
 
 @app.route('/game', methods=['GET'])
@@ -44,3 +45,10 @@ def movement():
 def save():
     chessboard.save_game()
     return jsonify(success=True)
+
+
+@app.route('/replay', methods=['GET'])
+def replay():
+    game_name = request.args.get('game')
+    game_activity = chessboard.get_game_activity(game_name)
+    return jsonify(activity=game_activity)
