@@ -1,4 +1,5 @@
 import mysql.connector
+import datetime
 
 HOST = '127.0.0.1'
 USER = 'root'
@@ -13,8 +14,8 @@ class Repository(object):
 
     def save_game(self, name, activity):
         cursor = self.connection.cursor()
-        sql = "INSERT INTO games (name, activity) VALUES (%s, %s)"
-        values = (name, activity)
+        sql = "INSERT INTO games (name, activity, date) VALUES (%s, %s, %s)"
+        values = (name, activity, datetime.datetime.now())
         cursor.execute(sql, values)
         self.connection.commit()
         cursor.close()
@@ -30,7 +31,7 @@ class Repository(object):
 
     def get_games(self):
         cursor = self.connection.cursor()
-        sql = "SELECT name FROM games"
+        sql = "SELECT name, date FROM games"
         cursor.execute(sql)
         games = cursor.fetchall()
         cursor.close()

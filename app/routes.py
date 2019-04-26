@@ -9,8 +9,8 @@ chessboard = Chessboard()
 @app.route('/', methods=['GET'])
 @app.route('/home', methods=['GET'])
 def home():
-    game_names = chessboard.get_games()
-    return render_template('index.html', games=game_names)
+    games = chessboard.get_games()
+    return render_template('index.html', games=games)
 
 
 @app.route('/game', methods=['GET'])

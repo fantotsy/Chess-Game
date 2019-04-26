@@ -7,14 +7,17 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='index.css') }}">
 </head>
 <body>
-<div class="container">
+<div class="play">
     <a href="/game">Play</a>
 </div>
 <div class="games">
-    <ul>
+    <ul class="gamesList">
         {% for game in games %}
         <li>
-            <div class="replay">{{ game[0] }}</div>
+            <div class="replay">
+                <span class="gameName">{{ game[0] }}</span>
+                <span class="gameDate">{{ game[1] }}</span>
+            </div>
         </li>
         {% endfor %}
     </ul>
